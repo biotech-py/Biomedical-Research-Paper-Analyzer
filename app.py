@@ -11,11 +11,10 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 load_dotenv()
 
-GEMINI_API_KEY = (
-    st.secrets.get("GEMINI_API_KEY")
-    if "GEMINI_API_KEY" in st.secrets
-    else os.getenv("GEMINI_API_KEY")
-)
+try:
+    GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
+except Exception:
+    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=GEMINI_API_KEY)
 if not GEMINI_API_KEY:
     st.error("Gemini API Key not found in .env file")
@@ -250,7 +249,7 @@ if "result" not in st.session_state:
 uploaded_files = st.file_uploader(
     "Upload Research Papers (Maximum 2 PDFs)",
     type=["pdf"],
-    #accept_multiple_files=True
+    accept_multiple_files=True
 )
 if uploaded_files:
 
