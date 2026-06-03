@@ -81,12 +81,11 @@ https://biomedical-research-paper-analyzer.streamlit.app/
 
 ### Home Page
 
-![Home Page](screenshots/home_page.png)
+<img src="screenshots/home_page.png" width="800">
 
-![Analysis Dashboard](screenshots/analysis_dashboard.png)
+<img src="screenshots/analysis_dashboard.png" width="800">
 
-![Research Insights](screenshots/research_gaps.png)
----
+<img src="screenshots/research_gaps.png" width="800">---
 
 ## 📂 Project Structure
 
