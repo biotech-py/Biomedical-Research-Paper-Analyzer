@@ -250,7 +250,7 @@ if "result" not in st.session_state:
 uploaded_files = st.file_uploader(
     "Upload Research Papers (Maximum 2 PDFs)",
     type=["pdf"],
-    accept_multiple_files=True
+    #accept_multiple_files=True
 )
 if uploaded_files:
 
