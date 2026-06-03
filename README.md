@@ -2,6 +2,8 @@
 
 An AI-powered web application that automatically analyzes biomedical research papers and generates structured insights using **Google Gemini AI** and **Streamlit**.
 
+For the best mobile experience, use Firefox if file uploads do not work properly in Chrome on some Android devices.
+
 ## 🚀 Live Demo
 
 https://biomedical-research-paper-analyzer.streamlit.app/
