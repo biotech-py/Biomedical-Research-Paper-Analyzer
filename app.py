@@ -250,9 +250,23 @@ uploaded_file = st.file_uploader(
     type=["pdf"]
 )
 if uploaded_file is not None:
+
     st.success("PDF uploaded successfully!")
-    uploaded_file.seek(0)
-    extracted_text = extract_text_from_pdf(uploaded_file)
+
+    st.write("Filename:", uploaded_file.name)
+    st.write("Size:", uploaded_file.size)
+    st.write("Type:", uploaded_file.type)
+
+    try:
+        uploaded_file.seek(0)
+
+        extracted_text = extract_text_from_pdf(uploaded_file)
+
+        st.success("PDF text extracted successfully!")
+
+    except Exception as e:
+        st.error(f"PDF Extraction Error: {e}")
+        st.stop()
     st.subheader("📄 Extracted Text Preview")
     st.text_area(
             "First 3000 Characters",
