@@ -1,7 +1,9 @@
 streamlit
 pandas
-plotly
+numpy
+matplotlib
 PyMuPDF
 google-generativeai
 python-dotenv
-
+reportlab
+plotly
