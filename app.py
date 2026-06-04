@@ -54,7 +54,7 @@ def create_pdf_report(result):
             Novelty Score: {result['novelty_score']}/10<br/>
             Methodology Score: {result['methodology_score']}/10<br/>
             Impact Score: {result['impact_score']}/10<br/>
-            Readability Score: {result['readability_score']}/10<br/>
+            Reproducibility Score: {result['reproducibility_score']}/10<br/>
             Overall Score: {result['overall_score']}/10
             """,
             styles["BodyText"]
@@ -172,7 +172,6 @@ Rules:
 - novelty_score must be an integer from 1 to 10
 - methodology_score must be an integer from 1 to 10
 - impact_score must be an integer from 1 to 10
-- readability_score must be an integer from 1 to 10
 - reproducibility_score must be an integer from 1 to 10
 - overall_score must be an integer from 1 to 10
 - recommendation must be one of:
@@ -250,30 +249,16 @@ uploaded_file = st.file_uploader(
     type=["pdf"]
 )
 if uploaded_file is not None:
-
     st.success("PDF uploaded successfully!")
-
-    st.write("Filename:", uploaded_file.name)
-    st.write("Size:", uploaded_file.size)
-    st.write("Type:", uploaded_file.type)
-
-    try:
-        uploaded_file.seek(0)
-
-        extracted_text = extract_text_from_pdf(uploaded_file)
-
-        st.success("PDF text extracted successfully!")
-
-    except Exception as e:
-        st.error(f"PDF Extraction Error: {e}")
-        st.stop()
+    uploaded_file.seek(0)
+    extracted_text = extract_text_from_pdf(uploaded_file)
     st.subheader("📄 Extracted Text Preview")
     st.text_area(
             "First 3000 Characters",
             extracted_text[:3000],
             height=250
         )
-    if st.button("🔬 Analyze Paper"):
+    if st.button("🔬 Analyze Paper"): 
             with st.spinner("Analyzing with Gemini..."):
                 st.session_state.result = analyze_paper(
                     extracted_text
@@ -320,9 +305,7 @@ if st.session_state.result is not None:
         st.metric("🌍 Impact", f"{result['impact_score']}/10")
 
     with score4:
-        st.metric("📖 Readability", f"{result['readability_score']}/10"
-    )
-
+        st.metric("🔄 Reproducibility", f"{result.get('reproducibility_score', 'N/A')}/10" )
     with score5:
         st.metric("⭐ Overall", f"{result['overall_score']}/10")
 
